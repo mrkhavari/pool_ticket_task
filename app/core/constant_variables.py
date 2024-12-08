@@ -1,0 +1,14 @@
+### VALUES ###
+UUID_LENGTH = 36
+STRING_LENGTH_32 = 32
+STRING_LENGTH_60 = 60
+MAX_TASK_QUERY = 5
+TASKS_CACHE_NAME = "tasks"
+
+### MESSAGES ###
+USERNAME_NOT_FOUND = "Username Not Found"
+INCORRECT_PASSWORD = "Incorrect Password"
+INCORRECT_USERNAME = "Incorrect Username"
+INVALID_AUTHENTICATION = "Invalid Token"
+INCORRECT_TITLE = "Incorrect Title"
+TASK_NOT_FOUND = "Task Not Found"
