@@ -1,0 +1,9 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir celery redis pydantic_settings
+
+COPY . /app
+
+CMD ["celery", "-A", "app.celery.tasks.celery_app", "worker", "--loglevel=info"]
