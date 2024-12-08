@@ -1,6 +1,28 @@
 version: '3.9'
 
 services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - APP_NAME
+      - APP_VERSION
+      - DB_URL
+      - JWT_SECRET_KEY
+      - JWT_ALGORITHM
+      - USER_ACCESS_TOKEN_EXPIRE_MINUTES
+      - REDIS_URL
+      - CELERY_BROKER_URL
+      - CELERY_RESULT_BACKEND
+      - ENABLE_USING_CACHE
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+
   postgres:
     image: postgres:latest
     ports:
@@ -12,6 +34,8 @@ services:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
     restart: on-failure
+    healthcheck:
+      test: "PGPASSWORD=$$POSTGRES_PASSWORD pg_isready -h 127.0.0.1 -U docker -d gis"
 
   redis:
     image: redis
